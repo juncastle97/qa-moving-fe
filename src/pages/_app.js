@@ -7,10 +7,8 @@ const queryClient = new QueryClient();
 export default function App({ Component, pageProps }) {
   return (
     <QueryClientProvider client={queryClient}>
-    <AuthProvider>
       <Component {...pageProps} />
       <ReactQueryDevtools initialIsOpen={false} />
-    </AuthProvider>
-  </QueryClientProvider>
+    </QueryClientProvider>
   );
 }

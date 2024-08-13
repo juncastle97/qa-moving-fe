@@ -1,5 +1,3 @@
 export default function Home() {
-  return (
-   <dev>hi</dev>
-  );
+  return <dev>hi</dev>;
 }

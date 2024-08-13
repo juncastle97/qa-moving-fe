@@ -1,4 +1,12 @@
 /** @type {import('tailwindcss').Config} */
+
+const px0_100 = Object.fromEntries(
+  Array.from({ length: 101 }, (_, i) => [i, `${i}px`]),
+);
+const px0_1000 = Object.fromEntries(
+  Array.from({ length: 1001 }, (_, i) => [i, `${i}px`]),
+);
+
 module.exports = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -7,10 +15,237 @@ module.exports = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      borderRadius: px0_100,
+      borderWidth: px0_100,
+      lineHeight: px0_100,
+      width: px0_1000,
+      height: px0_1000,
+      fontFamily: {
+        Pretendard: ["Pretendard"],
+      },
+      fontSize: {
+        "3xl-32px-bold": [
+          "32px",
+          {
+            fontWeight: "700",
+            lineHeight: "143.75%",
+          },
+        ],
+        "3xl-32px-semibold": [
+          "32px",
+          {
+            fontWeight: "600",
+            lineHeight: "143.75%",
+          },
+        ],
+        "2xl-24px-bold": [
+          "24px",
+          {
+            fontWeight: "700",
+            lineHeight: "133.333%",
+          },
+        ],
+        "2xl-24px-semibold": [
+          "24px",
+          {
+            fontWeight: "600",
+            lineHeight: "133.333%",
+          },
+        ],
+        "2xl-24px-medium": [
+          "24px",
+          {
+            fontWeight: "500",
+            lineHeight: "133.333%",
+          },
+        ],
+        "2xl-24px-regular": [
+          "24px",
+          {
+            fontWeight: "400",
+            lineHeight: "133.333%",
+          },
+        ],
+        "xl-20px-bold": [
+          "20px",
+          {
+            fontWeight: "700",
+            lineHeight: "160%",
+          },
+        ],
+        "xl-20px-semibold": [
+          "20px",
+          {
+            fontWeight: "600",
+            lineHeight: "160%",
+          },
+        ],
+        "xl-20px-medium": [
+          "20px",
+          {
+            fontWeight: "500",
+            lineHeight: "160%",
+          },
+        ],
+        "xl-20px-regular": [
+          "20px",
+          {
+            fontWeight: "400",
+            lineHeight: "160%",
+          },
+        ],
+        "2lg-18px-bold": [
+          "18px",
+          {
+            fontWeight: "700",
+            lineHeight: "144.444%",
+          },
+        ],
+        "2lg-18px-semibold": [
+          "18px",
+          {
+            fontWeight: "600",
+            lineHeight: "144.444%",
+          },
+        ],
+        "2lg-18px-medium": [
+          "18px",
+          {
+            fontWeight: "500",
+            lineHeight: "144.444%",
+          },
+        ],
+        "2lg-18px-regular": [
+          "18px",
+          {
+            fontWeight: "400",
+            lineHeight: "144.444%",
+          },
+        ],
+        "lg-16px-bold": [
+          "16px",
+          {
+            fontWeight: "700",
+            lineHeight: "162.5%",
+          },
+        ],
+        "lg-16px-semibold": [
+          "16px",
+          {
+            fontWeight: "600",
+            lineHeight: "162.5%",
+          },
+        ],
+        "lg-16px-medium": [
+          "16px",
+          {
+            fontWeight: "500",
+            lineHeight: "162.5%",
+          },
+        ],
+        "lg-16px-regular": [
+          "16px",
+          {
+            fontWeight: "400",
+            lineHeight: "162.5%",
+          },
+        ],
+        "lg-14px-bold": [
+          "14px",
+          {
+            fontWeight: "700",
+            lineHeight: "171.429%",
+          },
+        ],
+        "lg-14px-semibold": [
+          "14px",
+          {
+            fontWeight: "600",
+            lineHeight: "171.429%",
+          },
+        ],
+        "lg-14px-medium": [
+          "14px",
+          {
+            fontWeight: "500",
+            lineHeight: "171.429%",
+          },
+        ],
+        "lg-14px-regular": [
+          "14px",
+          {
+            fontWeight: "400",
+            lineHeight: "171.429%",
+          },
+        ],
+        "sm-13px-semibold": [
+          "13px",
+          {
+            fontWeight: "600",
+            lineHeight: "169.231%",
+          },
+        ],
+        "sm-13px-medium": [
+          "13px",
+          {
+            fontWeight: "500",
+            lineHeight: "169.231%",
+          },
+        ],
+        "xs-12px-semibold": [
+          "12px",
+          {
+            fontWeight: "600",
+            lineHeight: "166.667%",
+          },
+        ],
+        "xs-12px-medium": [
+          "12px",
+          {
+            fontWeight: "500",
+            lineHeight: "150%",
+          },
+        ],
+        "xs-12px-regular": [
+          "12px",
+          {
+            fontWeight: "400",
+            lineHeight: "150%",
+          },
+        ],
+      },
+      colors: {
+        "black-100": "rgb(var(--black-100))",
+        "black-200": "rgb(var(--black-200))",
+        "black-300": "rgb(var(--black-300))",
+        "black-400": "rgb(var(--black-400))",
+        "black-500": "rgb(var(--black-500))",
+
+        "grayscale-50": "rgb(var(--grayscale-50))",
+        "grayscale-100": "rgb(var(--grayscale-100))",
+        "grayscale-200": "rgb(var(--grayscale-200))",
+        "grayscale-300": "rgb(var(--grayscale-300))",
+        "grayscale-400": "rgb(var(--grayscale-400))",
+        "grayscale-500": "rgb(var(--grayscale-500))",
+
+        "primary-blue-50": "rgb(var(--primary-blue-50))",
+        "primary-blue-100": "rgb(var(--primary-blue-100))",
+        "primary-blue-200": "rgb(var(--primary-blue-200))",
+        "primary-blue-300": "rgb(var(--primary-blue-300))",
+        "primary-blue-400": "rgb(var(--primary-blue-400))",
+
+        "secondary-yellow": "rgb(var(--secondary-yellow))",
+
+        "secondary-red-100": "rgb(var(--secondary-red-100))",
+        "secondary-red-200": "rgb(var(--secondary-red-200))",
+
+        "bg-100": "rgb(var(--bg-100))",
+        "bg-200": "rgb(var(--bg-200))",
+        "bg-300": "rgb(var(--bg-300))",
+        "bg-400": "rgb(var(--bg-400))",
+
+        "line-100": "rgb(var(--line-100))",
+        "line-200": "rgb(var(--line-200))",
       },
     },
   },

@@ -1,3 +1,3 @@
 export default function Home() {
-  return <dev>hi</dev>;
+  return <dev className="bg-red-100">hi</dev>;
 }

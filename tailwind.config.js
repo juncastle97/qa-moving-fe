@@ -29,6 +29,13 @@ module.exports = {
         Pretendard: ["Pretendard"],
       },
       fontSize: {
+        "landing-h1": [
+          "36px",
+          {
+            fontWeight: "600",
+            lineHeight: "138.889%",
+          },
+        ],
         "3xl-32px-bold": [
           "32px",
           {

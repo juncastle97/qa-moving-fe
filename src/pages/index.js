@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <>
       <div className="h-[calc(100vh-88px)] bg-bg-400">
-        <h1 className="text-landing-h1 pb-30 pt-80 text-center">
+        <h1 className="pb-30 pt-80 text-center text-landing-h1">
           원하는 이사 서비스를 요청하고
           <br />
           견적을 받아보세요
@@ -24,13 +24,7 @@ export default function Home() {
           </div>
         </div>
         <div className="mt-30 flex justify-center">
-          <CustomButton
-            text="지금 시작하기"
-            rounded="50"
-            width="640"
-            height="64"
-            fontSize="xl-20px-semibold"
-          />
+          <CustomButton text="지금 시작하기" className="h-64 w-640 rounded-50 text-xl-20px-semibold" />
         </div>
       </div>
     </>

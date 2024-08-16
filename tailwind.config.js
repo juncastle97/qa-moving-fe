@@ -3,6 +3,9 @@
 const px0_100 = Object.fromEntries(
   Array.from({ length: 101 }, (_, i) => [i, `${i}px`]),
 );
+const px0_500 = Object.fromEntries(
+  Array.from({ length: 501 }, (_, i) => [i, `${i}px`]),
+);
 const px0_1000 = Object.fromEntries(
   Array.from({ length: 1001 }, (_, i) => [i, `${i}px`]),
 );
@@ -14,10 +17,12 @@ module.exports = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    screens: { sm: "375px", md: "744px", lg: "1920px" },
     extend: {
       borderRadius: px0_100,
       borderWidth: px0_100,
       lineHeight: px0_100,
+      spacing: px0_500,
       width: px0_1000,
       height: px0_1000,
       fontFamily: {
@@ -215,37 +220,37 @@ module.exports = {
         ],
       },
       colors: {
-        "black-100": "rgb(var(--black-100))",
-        "black-200": "rgb(var(--black-200))",
-        "black-300": "rgb(var(--black-300))",
-        "black-400": "rgb(var(--black-400))",
-        "black-500": "rgb(var(--black-500))",
+        "black-100": "hsl(var(--black-100))",
+        "black-200": "hsl(var(--black-200))",
+        "black-300": "hsl(var(--black-300))",
+        "black-400": "hsl(var(--black-400))",
+        "black-500": "hsl(var(--black-500))",
 
-        "grayscale-50": "rgb(var(--grayscale-50))",
-        "grayscale-100": "rgb(var(--grayscale-100))",
-        "grayscale-200": "rgb(var(--grayscale-200))",
-        "grayscale-300": "rgb(var(--grayscale-300))",
-        "grayscale-400": "rgb(var(--grayscale-400))",
-        "grayscale-500": "rgb(var(--grayscale-500))",
+        "grayscale-50": "hsl(var(--grayscale-50))",
+        "grayscale-100": "hsl(var(--grayscale-100))",
+        "grayscale-200": "hsl(var(--grayscale-200))",
+        "grayscale-300": "hsl(var(--grayscale-300))",
+        "grayscale-400": "hsl(var(--grayscale-400))",
+        "grayscale-500": "hsl(var(--grayscale-500))",
 
-        "primary-blue-50": "rgb(var(--primary-blue-50))",
-        "primary-blue-100": "rgb(var(--primary-blue-100))",
-        "primary-blue-200": "rgb(var(--primary-blue-200))",
-        "primary-blue-300": "rgb(var(--primary-blue-300))",
-        "primary-blue-400": "rgb(var(--primary-blue-400))",
+        "primary-blue-50": "hsl(var(--primary-blue-50))",
+        "primary-blue-100": "hsl(var(--primary-blue-100))",
+        "primary-blue-200": "hsl(var(--primary-blue-200))",
+        "primary-blue-300": "hsl(var(--primary-blue-300))",
+        "primary-blue-400": "hsl(var(--primary-blue-400))",
 
-        "secondary-yellow": "rgb(var(--secondary-yellow))",
+        "secondary-yellow": "hsl(var(--secondary-yellow))",
 
-        "secondary-red-100": "rgb(var(--secondary-red-100))",
-        "secondary-red-200": "rgb(var(--secondary-red-200))",
+        "secondary-red-100": "hsl(var(--secondary-red-100))",
+        "secondary-red-200": "hsl(var(--secondary-red-200))",
 
-        "bg-100": "rgb(var(--bg-100))",
-        "bg-200": "rgb(var(--bg-200))",
-        "bg-300": "rgb(var(--bg-300))",
-        "bg-400": "rgb(var(--bg-400))",
+        "bg-100": "hsl(var(--bg-100))",
+        "bg-200": "hsl(var(--bg-200))",
+        "bg-300": "hsl(var(--bg-300))",
+        "bg-400": "hsl(var(--bg-400))",
 
-        "line-100": "rgb(var(--line-100))",
-        "line-200": "rgb(var(--line-200))",
+        "line-100": "hsl(var(--line-100))",
+        "line-200": "hsl(var(--line-200))",
       },
     },
   },

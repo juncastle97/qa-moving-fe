@@ -12,13 +12,13 @@ export default function GNB() {
           <div className="relative h-34 w-88 lg:h-44 lg:w-116">
             <Image src="/icons/ic-logo-icon-text.svg" alt="logo-icon-text" fill />
           </div>
-          <div className="flex gap-40 text-2lg-18px-bold">
+          {currentPath !== "/" && (<div className="flex gap-40 text-2lg-18px-bold">
             <div>견적요청</div>
             <div>기사님 찾기</div>
             <div>햄께 했던 기사님</div>
-          </div>
+          </div>)}
         </div>
-        {currentPath == "/" && (
+        {currentPath !== "/" && (
           <div className="flex gap-24 itsems-center w-72 lg:w-167 lg:gap-32">
             <div className="relative w-24 h-24 lg:h-36 lg:w-36">
               <Image src="/icons/ic-alarm.svg" alt="ic-alarm" fill />

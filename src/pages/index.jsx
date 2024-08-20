@@ -1,7 +1,14 @@
-import CustomButton from "@/components/common/Button";
 import Image from "next/image";
+import { useRouter } from "next/router";
+import CustomButton from "@/components/common/Button";
 
 export default function Home() {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push("/login-user");
+  };
+
   return (
     <>
       <div className="h-[calc(100vh-88px)] bg-bg-400">
@@ -24,7 +31,11 @@ export default function Home() {
           </div>
         </div>
         <div className="mt-30 flex justify-center">
-          <CustomButton text="지금 시작하기" className="h-64 w-640 rounded-50 text-xl-20px-semibold" />
+          <CustomButton
+            text="지금 시작하기"
+            className="h-64 w-640 rounded-50 text-xl-20px-semibold"
+            onClick={handleClick}
+          />
         </div>
       </div>
     </>

@@ -11,4 +11,11 @@ export const ERROR_MESSAGE = {
     valid: "영문, 숫자를 모두 포함해 주세요",
     check: "비밀번호가 일치하지 않습니다",
   },
+  name: {
+    required: "이름을 입력해 주세요",
+  },
+  address: {
+    required: "전화번호를 입력해 주세요",
+    valid: "숫자만 입력해 주세요",
+  },
 };

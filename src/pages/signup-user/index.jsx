@@ -46,6 +46,20 @@ export default function LoginUser() {
             <div className="flex flex-col gap-56">
               <div className="flex flex-col gap-32">
                 <div className="flex flex-col gap-16">
+                  <label htmlFor="name" className="text-xl-20px-regular text-black-400">
+                    이름
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    placeholder="이름"
+                    {...register("name", {
+                      required: ERROR_MESSAGE.email.required,
+                    })}
+                    className="h-64 w-640 rounded-16 border border-line-200 bg-grayscale-50 p-14 text-xl-20px-regular outline-none"
+                  />
+                </div>
+                <div className="flex flex-col gap-16">
                   <label htmlFor="email" className="text-xl-20px-regular text-black-400">
                     이메일
                   </label>
@@ -59,6 +73,21 @@ export default function LoginUser() {
                     className="h-64 w-640 rounded-16 border border-line-200 bg-grayscale-50 p-14 text-xl-20px-regular outline-none"
                   />
                 </div>
+                <div className="flex flex-col gap-16">
+                  <label htmlFor="adress" className="text-xl-20px-regular text-black-400">
+                    전화번호
+                  </label>
+                  <input
+                    type="text"
+                    id="adress"
+                    placeholder="숫자만 입력해주세요."
+                    {...register("adress", {
+                      required: ERROR_MESSAGE.email.required,
+                    })}
+                    className="h-64 w-640 rounded-16 border border-line-200 bg-grayscale-50 p-14 text-xl-20px-regular outline-none"
+                  />
+                </div>
+
                 <div className="flex flex-col gap-16">
                   <label htmlFor="password" className="text-xl-20px-regular text-black-400">
                     비밀번호
@@ -74,28 +103,43 @@ export default function LoginUser() {
                     autoComplete="off"
                   />
                 </div>
+                <div className="flex flex-col gap-16">
+                  <label htmlFor="passwordConfirm" className="text-xl-20px-regular text-black-400">
+                    비밀번호 확인
+                  </label>
+                  <input
+                    type="password"
+                    id="passwordConfirm"
+                    placeholder="비밀번호 확인"
+                    {...register("passwordConfirm", {
+                      required: ERROR_MESSAGE.password.required,
+                    })}
+                    className="h-64 w-640 rounded-16 border border-line-200 bg-grayscale-50 p-14 text-xl-20px-regular text-grayscale-400 outline-none"
+                    autoComplete="off"
+                  />
+                </div>
               </div>
               <CustomButton
-                text="로그인"
+                text="시작하기"
                 type="submit"
                 className="h-64 w-640 rounded-16 text-xl-20px-semibold"
                 disabled={!isValid}
               />
             </div>
             <div className="mt-24 text-center text-xl-20px-regular text-black-200">
-              아직 무빙 회원이 아니신가요?{" "}
+              이미 무빙 회원이신가요?{" "}
               <span
                 className="cursor-pointer text-primary-blue-300 underline underline-offset-2"
                 onClick={handleSignupUser}
               >
-                이메일로 회원가입하기
+                로그인
               </span>
             </div>
           </div>
         </form>
 
         <div className="flex flex-col items-center gap-32">
-          <div className="text-xl-20px-regular text-black-200">SNS 계정으로 간편 로그인하기</div>
+          <div className="text-xl-20px-regular text-black-200">SNS 계정으로 간편 가입하기</div>
           <div className="flex gap-32">
             <div className="relative h-72 w-72 cursor-pointer">
               <Image src="/images/img-google.png" alt="google img" fill />

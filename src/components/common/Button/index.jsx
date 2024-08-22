@@ -13,7 +13,7 @@ export default function CustomButton({
       {({ hover, active }) => (
         <button
           className={clsx(
-            "p-16 text-gray-50",
+            "text-gray-50",
             disabled
               ? "cursor-not-allowed bg-grayscale-100"
               : hover && !active

@@ -1,14 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 
-const px0_100 = Object.fromEntries(
-  Array.from({ length: 101 }, (_, i) => [i, `${i}px`]),
-);
-const px0_500 = Object.fromEntries(
-  Array.from({ length: 501 }, (_, i) => [i, `${i}px`]),
-);
-const px0_1000 = Object.fromEntries(
-  Array.from({ length: 1001 }, (_, i) => [i, `${i}px`]),
-);
+const px0_100 = Object.fromEntries(Array.from({ length: 101 }, (_, i) => [i, `${i}px`]));
+const px0_500 = Object.fromEntries(Array.from({ length: 501 }, (_, i) => [i, `${i}px`]));
+const px0_1000 = Object.fromEntries(Array.from({ length: 1001 }, (_, i) => [i, `${i}px`]));
 
 module.exports = {
   content: [
@@ -34,6 +28,13 @@ module.exports = {
           {
             fontWeight: "600",
             lineHeight: "138.889%",
+          },
+        ],
+        "landing-h2": [
+          "24px",
+          {
+            fontWeight: "600",
+            lineHeight: "141.667%",
           },
         ],
         "3xl-32px-bold": [
@@ -184,6 +185,13 @@ module.exports = {
           },
         ],
         "lg-14px-regular": [
+          "14px",
+          {
+            fontWeight: "400",
+            lineHeight: "171.429%",
+          },
+        ],
+        "md-14px-regular": [
           "14px",
           {
             fontWeight: "400",

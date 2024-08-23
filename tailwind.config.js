@@ -191,6 +191,13 @@ module.exports = {
             lineHeight: "171.429%",
           },
         ],
+        "md-14px-regular": [
+          "14px",
+          {
+            fontWeight: "400",
+            lineHeight: "171.429%",
+          },
+        ],
         "sm-13px-semibold": [
           "13px",
           {

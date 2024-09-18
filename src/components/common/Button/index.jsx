@@ -6,16 +6,19 @@ export default function CustomButton({
   onClick,
   type = 'button',
   disabled = false,
+  outline = false,
   className = "",
   ...props
 }) {
   return (
     <button
       className={clsx(
-        "text-gray-50 transition-colors duration-200",
+        "transition-colors",
         disabled
-          ? "cursor-not-allowed bg-grayscale-100"
-          : "bg-primary-blue-300 hover:bg-primary-blue-200 active:bg-primary-blue-300",
+          ? "cursor-not-allowed bg-grayscale-100 text-gray-50"
+          : outline
+            ? "border border-primary-blue-300 text-primary-blue-300 hover:bg-primary-blue-50"
+            : "bg-primary-blue-300 text-gray-50 hover:bg-primary-blue-200 active:bg-primary-blue-300",
         className
       )}
       onClick={onClick}

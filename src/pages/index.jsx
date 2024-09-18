@@ -5,14 +5,18 @@ import CustomButton from "@/components/common/Button";
 export default function Home() {
   const router = useRouter();
 
-  const handleClick = () => {
+  const handleClickLogin = () => {
     router.push("/login-user");
+  };
+
+  const handleClickSignup = () => {
+    router.push("/signup-user");
   };
 
   return (
     <>
-      <div className="h-[calc(100vh-54px)] bg-bg-400 md:h-[calc(100vh-60px)] lg:h-[calc(100vh-88px)]">
-        <h1 className="text-landing-h2 pb-30 pt-80 text-center lg:text-landing-h1">
+      <div className="min-h-[calc(100vh-60px)] bg-bg-400 lg:min-h-[calc(100vh-88px)]">
+        <h1 className="pb-30 pt-80 text-center text-landing-h2 lg:text-landing-h1">
           원하는 이사 서비스를 요청하고
           <br />
           견적을 받아보세요
@@ -44,11 +48,17 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="mt-30 flex justify-center">
+        <div className="mt-30 flex flex-col items-center justify-center gap-8 pb-65 lg:flex-row lg:gap-16 lg:pb-54">
           <CustomButton
-            text="지금 시작하기"
-            className="h-54 w-327 rounded-50 text-lg-16px-semibold lg:h-64 lg:w-640 lg:text-xl-20px-semibold"
-            onClick={handleClick}
+            text="로그인"
+            className="h-54 w-327 rounded-50 text-lg-16px-semibold lg:h-64 lg:w-340 lg:text-xl-20px-semibold"
+            onClick={handleClickLogin}
+          />
+          <CustomButton
+            text="회원가입"
+            className="h-54 w-327 rounded-50 text-lg-16px-semibold lg:h-64 lg:w-340 lg:text-xl-20px-semibold"
+            onClick={handleClickSignup}
+            outline={true}
           />
         </div>
       </div>

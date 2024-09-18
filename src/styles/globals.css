@@ -3,52 +3,59 @@
 @tailwind utilities;
 
 :root {
+  --black-100: 0 0 42;
+  --black-200: 0 0 32;
+  --black-300: 0 0 22;
+  --black-400: 0 0 12;
+  --black-500: 0 0 2;
 
- --black-100: 0 0 42;
- --black-200: 0 0 32;
- --black-300: 0 0 22;
- --black-400: 0 0 12;
- --black-500: 0 0 2;
+  --grayscale-50: 0 0 100;
+  --grayscale-100: 0 0 87;
+  --grayscale-200: 0 0 77;
+  --grayscale-300: 0 0 67;
+  --grayscale-400: 0 0 60;
+  --grayscale-500: 0 0 50;
 
- --grayscale-50: 0 0 100;
- --grayscale-100: 0 0 87;
- --grayscale-200: 0 0 77;
- --grayscale-300: 0 0 67;
- --grayscale-400: 0 0 60;
- --grayscale-500: 0 0 50;
+  --primary-blue-50: 210 100 98;
+  --primary-blue-100: 210 100 96;
+  --primary-blue-200: 209 100 65;
+  --primary-blue-300: 209 100 55;
+  --primary-blue-400: 231 31 21;
 
- --primary-blue-50: 210 100 98;
- --primary-blue-100: 210 100 96;
- --primary-blue-200: 209 100 65;
- --primary-blue-300: 209 100 55;
- --primary-blue-400: 231 31 21;
+  --secondary-yellow: 40 100 64;
 
- --secondary-yellow: 40 100 64;
+  --secondary-red-100: 353 100 97;
+  --secondary-red-200: 353 100 65;
 
- --secondary-red-100: 353 100 97;
- --secondary-red-200: 353 100 65;
- 
- --bg-100: 0 0 99;
- --bg-200: 0 0 97;
- --bg-300: 0 0 94;
- --bg-400: 214 47 97;
+  --bg-100: 0 0 99;
+  --bg-200: 0 0 97;
+  --bg-300: 0 0 94;
+  --bg-400: 214 47 97;
 
- --line-100: 0 0 95;
- --line-200: 0 0 90;
+  --line-100: 0 0 95;
+  --line-200: 0 0 90;
 }
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
+  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb)))
     rgb(var(--background-start-rgb));
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .custom-rounded-text {
+    @apply rounded-bl-[30px] rounded-br-[30px] rounded-tr-[30px];
+  }
+
+  .custom-rounded-answer {
+    @apply rounded-bl-[30px] rounded-br-[30px] rounded-tl-[30px];
+  }
+
+  .custom-rounded-input {
+    @apply rounded-bl-[32px] rounded-br-[32px] rounded-tr-[32px];
   }
 }

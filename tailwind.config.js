@@ -191,6 +191,13 @@ module.exports = {
             lineHeight: "171.429%",
           },
         ],
+        "md-14px-medium": [
+          "14px",
+          {
+            fontWeight: "500",
+            lineHeight: "171.429%",
+          },
+        ],
         "md-14px-regular": [
           "14px",
           {

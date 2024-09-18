@@ -6,25 +6,35 @@ import { ERROR_MESSAGE } from "@/constants/formMessages";
 import CustomInput from "@/components/common/Input";
 import CustomLable from "@/components/common/Lable";
 
-export default function LoginUser() {
+export default function SignupUser() {
   const router = useRouter();
 
-  const handleLoginDriver = () => {
-    router.push("/login-driver");
+  const handleSignupDriver = () => {
+    router.push("/signup-driver");
   };
 
-  const handleSignupUser = () => {
-    router.push("/signup-user");
+  const handleLoginUser = () => {
+    router.push("/login-user");
   };
 
   const {
     register,
     handleSubmit,
+    watch,
     formState: { isValid, errors },
   } = useForm({ mode: "onChange" });
 
-  const onSubmit = (data) => console.log(data);
-  
+  const password = watch("password");
+
+  const onSubmit = async (data) => {
+    try {
+      console.log("Form submitted with data:", data);
+      router.push("/profile-user");
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
+  };
+
   return (
     <>
       <div className="mx-auto mb-88 mt-56 flex w-327 flex-col items-center gap-40 lg:w-640 lg:gap-72">
@@ -36,7 +46,7 @@ export default function LoginUser() {
             기사님이신가요?{" "}
             <span
               className="cursor-pointer text-primary-blue-300 underline underline-offset-2"
-              onClick={handleLoginDriver}
+              onClick={handleSignupDriver}
             >
               기사님 전용 페이지
             </span>
@@ -46,6 +56,16 @@ export default function LoginUser() {
         <form onSubmit={handleSubmit(onSubmit)} className="w-full">
           <div className="flex flex-col gap-32 lg:gap-56">
             <div className="flex flex-col gap-16 lg:gap-32">
+              <div className="flex flex-col gap-8 lg:gap-16">
+                <CustomLable text="이름" htmlFor="name" />
+                <CustomInput
+                  type="text"
+                  id="name"
+                  placeholder="성함을 입력해주세요"
+                  error={errors.name}
+                  {...register("name", { required: true })}
+                />
+              </div>
               <div className="flex flex-col gap-8 lg:gap-16">
                 <CustomLable text="이메일" htmlFor="email" />
                 <CustomInput
@@ -63,6 +83,22 @@ export default function LoginUser() {
                 />
               </div>
               <div className="flex flex-col gap-8 lg:gap-16">
+                <CustomLable text="전화번호" htmlFor="address" />
+                <CustomInput
+                  type="text"
+                  id="address"
+                  placeholder="숫자만 입력해주세요"
+                  error={errors.address}
+                  {...register("address", {
+                    required: true,
+                    pattern: {
+                      value: /^[0-9]+$/,
+                      message: ERROR_MESSAGE.address.valid,
+                    },
+                  })}
+                />
+              </div>
+              <div className="flex flex-col gap-8 lg:gap-16">
                 <CustomLable text="비밀번호" htmlFor="password" />
                 <CustomInput
                   type="password"
@@ -73,21 +109,35 @@ export default function LoginUser() {
                   autoComplete="off"
                 />
               </div>
+              <div className="flex flex-col gap-8 lg:gap-16">
+                <CustomLable text="비밀번호" htmlFor="passwordConfirm" />
+                <CustomInput
+                  type="password"
+                  id="passwordConfirm"
+                  placeholder="비밀번호를 다시 한번 입력해주세요"
+                  error={errors.passwordConfirm}
+                  {...register("passwordConfirm", {
+                    required: true,
+                    validate: (value) => value === password || ERROR_MESSAGE.password.confirm,
+                  })}
+                  autoComplete="off"
+                />
+              </div>
             </div>
             <CustomButton
-              text="로그인"
+              text="시작하기"
               type="submit"
               className="h-54 w-full rounded-16 text-lg-16px-semibold lg:h-64 lg:text-xl-20px-semibold"
               disabled={!isValid}
             />
           </div>
           <div className="mt-24 text-center text-xs-12px-regular text-black-200 lg:text-xl-20px-regular">
-            아직 무빙 회원이 아니신가요?{" "}
+            이미 무빙 회원이신가요?{" "}
             <span
               className="cursor-pointer text-primary-blue-300 underline underline-offset-2"
-              onClick={handleSignupUser}
+              onClick={handleLoginUser}
             >
-              이메일로 회원가입하기
+              로그인
             </span>
           </div>
         </form>

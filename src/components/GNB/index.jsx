@@ -5,7 +5,7 @@ export default function GNB() {
   const router = useRouter();
   const currentPath = router.pathname;
 
-  const hiddenPaths = ["/", "/login-user", "/signup-user", "/login-driver", "/signup-driver"];
+  const hiddenPaths = ["/", "/login-user", "/signup-user", "/login-driver", "/signup-driver", "/profile-user", "/profile-driver"];
 
   const handlePushMain = () => {
     router.push("/");
@@ -25,7 +25,7 @@ export default function GNB() {
             <div className="flex gap-40 text-2lg-18px-bold">
               <div>견적요청</div>
               <div>기사님 찾기</div>
-              <div>햄께 했던 기사님</div>
+              <div>함께 했던 기사님</div>
             </div>
           )}
         </div>

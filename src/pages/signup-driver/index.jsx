@@ -26,7 +26,14 @@ export default function SignupDriver() {
 
   const password = watch("password");
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async (data) => {
+    try {
+      console.log("Form submitted with data:", data);
+      router.push("/profile-driver");
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
+  };
 
   return (
     <>

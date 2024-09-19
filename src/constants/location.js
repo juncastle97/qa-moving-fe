@@ -1,4 +1,5 @@
 export const RADIO_BTN = [
+  "전체",
   "서울",
   "경기",
   "인천",

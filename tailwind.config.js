@@ -274,6 +274,10 @@ module.exports = {
         "line-100": "hsl(var(--line-100))",
         "line-200": "hsl(var(--line-200))",
       },
+      boxShadow: {
+        custom:
+          "-2px -2px 10px 0px rgba(220, 220, 220, 0.14), 2px 2px 10px 0px rgba(220, 220, 220, 0.14)",
+      },
     },
   },
   plugins: [],

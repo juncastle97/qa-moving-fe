@@ -32,7 +32,7 @@ export default function GNB() {
         {!hiddenPaths.includes(currentPath) && (
           <div className="itsems-center flex w-72 gap-24 lg:w-167 lg:gap-32">
             <div className="relative h-24 w-24 lg:h-36 lg:w-36">
-              <Image src="/icons/ic-alarm.svg" alt="ic-alarm" fill />
+              <Image src="/icons/alarm.svg" alt="ic-alarm" fill />
             </div>
             <div className="flex items-center gap-15">
               <div className="relative h-24 w-24 overflow-hidden rounded-full lg:h-36 lg:w-36">

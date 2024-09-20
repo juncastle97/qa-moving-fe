@@ -1,15 +1,31 @@
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/router";
+import ProfileDropdown from "../common/ProfileDropdown";
 
 export default function GNB() {
   const router = useRouter();
   const currentPath = router.pathname;
 
-  const hiddenPaths = ["/", "/login-user", "/signup-user", "/login-driver", "/signup-driver", "/profile-user", "/profile-driver"];
+  const hiddenPaths = [
+    "/",
+    "/login-user",
+    "/signup-user",
+    "/login-driver",
+    "/signup-driver",
+    "/profile-user",
+    "/profile-driver",
+  ];
 
   const handlePushMain = () => {
     router.push("/");
   };
+
+  const navItems = [
+    { name: "견적요청", path: "/quote-request" },
+    { name: "기사님 찾기", path: "/find-driver" },
+    { name: "내 견적 관리", path: "/my-quote/wait" },
+  ];
 
   return (
     <>
@@ -22,24 +38,27 @@ export default function GNB() {
             <Image src="/icons/ic-logo-icon-text.svg" alt="logo-icon-text" fill />
           </div>
           {!hiddenPaths.includes(currentPath) && (
-            <div className="flex gap-40 text-2lg-18px-bold">
-              <div>견적요청</div>
-              <div>기사님 찾기</div>
-              <div>함께 했던 기사님</div>
+            <div className="flex gap-40 text-2lg-18px-bold text-grayscale-400">
+              {navItems.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.path}
+                  className={`cursor-pointer ${
+                    currentPath === item.path ? "text-black-400" : "hover:text-primary-blue-300"
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              ))}
             </div>
           )}
         </div>
         {!hiddenPaths.includes(currentPath) && (
-          <div className="itsems-center flex w-72 gap-24 lg:w-167 lg:gap-32">
+          <div className="flex items-center gap-24 lg:gap-32">
             <div className="relative h-24 w-24 lg:h-36 lg:w-36">
               <Image src="/icons/alarm.svg" alt="ic-alarm" fill />
             </div>
-            <div className="flex items-center gap-15">
-              <div className="relative h-24 w-24 overflow-hidden rounded-full lg:h-36 lg:w-36">
-                <Image src="/images/img-default.png" alt="default-profile-img" fill />
-              </div>
-              <div className="text-2lg-18px-medium">김가나</div>
-            </div>
+            <ProfileDropdown />
           </div>
         )}
       </div>

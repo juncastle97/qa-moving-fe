@@ -4,7 +4,7 @@ import CustomButton from "@/components/common/Button";
 import Image from "next/image";
 import DetailChip from "@/components/common/DetailChip";
 import StarRatingAverage from "@/components/StarRatingAverage";
-import mockData from "./mockData";
+import mockData from "../../mock/driver-detail/mockData";
 import ReviewDetail from "@/components/Card/ReviewDetail";
 
 export default function DriverDetail() {

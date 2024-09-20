@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Dropdown from "@/components/common/Dropdown";
-import { RADIO_BTN } from "@/constants/location";
+import { DROPDOWN_BTN } from "@/constants/location";
 import LikedDriverList from "@/components/Card/LikedDriverList";
 import DriverList from "@/components/Card/DriverList";
 
@@ -39,7 +39,7 @@ export default function FindDriver() {
       </div>
       <div className="mb-50 flex gap-107">
         <div className="flex w-598 flex-col gap-32 pl-260 pr-10">
-          <div className="flex justify-between py-16 border-b border-line-200">
+          <div className="flex justify-between border-b border-line-200 py-16">
             <p className="text-xl-20px-medium">필터</p>
             <button className="text-lg-16px-medium text-grayscale-300" onClick={resetDropdowns}>
               초기화
@@ -50,7 +50,7 @@ export default function FindDriver() {
             <div className="w-328">
               <Dropdown
                 key={`location-${key}`}
-                options={RADIO_BTN}
+                options={DROPDOWN_BTN}
                 defaultOption={location}
                 onOptionSelect={(option) => handleOptionSelect(option, "location")}
                 big

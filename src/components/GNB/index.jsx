@@ -29,7 +29,7 @@ export default function GNB() {
 
   return (
     <>
-      <div className="flex h-54 w-full items-center justify-between border-b border-line-100 px-24 py-10 md:h-60 md:px-32 md:py-19 lg:h-88 lg:px-120 lg:py-26">
+      <div className="flex h-54 w-full items-center justify-between border-b border-line-100 px-24 py-10 md:h-60 md:px-32 md:py-19 lg:h-88 lg:px-260 lg:py-26">
         <div className="flex items-center gap-80">
           <div
             className="relative h-34 w-88 cursor-pointer lg:h-44 lg:w-116"

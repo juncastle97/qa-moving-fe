@@ -3,6 +3,7 @@
 const px0_100 = Object.fromEntries(Array.from({ length: 101 }, (_, i) => [i, `${i}px`]));
 const px0_500 = Object.fromEntries(Array.from({ length: 501 }, (_, i) => [i, `${i}px`]));
 const px0_1000 = Object.fromEntries(Array.from({ length: 1001 }, (_, i) => [i, `${i}px`]));
+const px0_2000 = Object.fromEntries(Array.from({ length: 2001 }, (_, i) => [i, `${i}px`]));
 
 module.exports = {
   content: [
@@ -17,7 +18,7 @@ module.exports = {
       borderWidth: px0_100,
       lineHeight: px0_100,
       spacing: px0_500,
-      width: px0_1000,
+      width: px0_2000,
       height: px0_1000,
       fontFamily: {
         Pretendard: ["Pretendard"],

@@ -23,6 +23,18 @@ module.exports = {
         Pretendard: ["Pretendard"],
       },
       fontSize: {
+        "review-star": [
+          "64px",
+          {
+            fontWeight: "700",
+          },
+        ],
+        "review-count": [
+          "38px",
+          {
+            fontWeight: "700",
+          },
+        ],
         "landing-h1": [
           "36px",
           {

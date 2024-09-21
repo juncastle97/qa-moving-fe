@@ -1,22 +1,51 @@
 import QuoteChip from "@/components/common/QuoteChip";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
+import { useRouter } from "next/router";
 
-export default function DriverList({quoteStatuses}) {
+export default function DriverList({ quoteStatuses, data, small }) {
+  const [liked, setLiked] = useState(false);
+
+  const router = useRouter();
+
+  const handleClick = () => {
+    setLiked((prevLiked) => !prevLiked);
+  };
+
+  const formatPrice = (price) => {
+    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " 원";
+  };
+
+  const navigateToDriverDetail = () => {
+    const currentPath = router.asPath;
+    // Remove any existing query parameters
+    const basePath = currentPath.split("?")[0];
+    // Ensure we don't add multiple slashes
+    const newPath = `${basePath.replace(/\/$/, "")}/${data.id}`;
+    router.push(newPath);
+  };
+
   return (
-    <div className="flex h-230 w-955 flex-col gap-9 rounded-16 px-24 py-20 shadow-custom cursor-pointer">
+    <div
+      className="flex w-full cursor-pointer flex-col gap-9 rounded-16 px-24 py-20 shadow-custom"
+      onClick={navigateToDriverDetail}
+    >
       <QuoteChip quoteStatuses={quoteStatuses} />
-      <div className="text-2xl-24px-semibold text-black-300">
-        고객님의 물품을 안전하게 운송해 드립니다.
+      <div
+        className={
+          small ? "text-xl-20px-semibold text-black-300" : "text-2xl-24px-semibold text-black-300"
+        }
+      >
+        {data.descriptionData}
       </div>
-      <div className="flex h-92 w-full gap-12 rounded-6 border px-18 py-16">
+      <div className="flex h-92 w-full justify-between gap-12 rounded-6 border px-18 py-16">
         <div className="flex items-center gap-24">
           <div className="relative h-65 w-65 overflow-hidden rounded-full border-3 border-black">
-            <Image src={"/images/기사님프로필사진.png"} alt="기사님 프로필" fill />
+            <Image src={data.profileImage} alt="기사님 프로필" fill />
           </div>
           <div className="flex w-708 flex-col gap-8">
             <div className="flex gap-8 text-2lg-18px-semibold text-black-300">
-              <p>김코드</p>
+              <p>{data.name}</p>
               <p>기사님</p>
             </div>
             <div className="flex items-center gap-16 text-lg-16px-medium">
@@ -24,29 +53,41 @@ export default function DriverList({quoteStatuses}) {
                 <div className="relative h-24 w-24">
                   <Image src={"/images/star.png"} alt="star" fill />
                 </div>
-                <p className="text-black-300">5.0</p>
-                <p className="text-grayscale-300">(178)</p>
+                <p className="text-black-300">{data.rating}</p>
+                <p className="text-grayscale-300">({data.reviewCount})</p>
               </div>
               <div className="h-14 border border-line-200"></div>
               <div className="flex gap-6">
                 <p className="text-grayscale-300">경력</p>
-                <p className="text-black-300">7년</p>
+                <p className="text-black-300">{data.experience}</p>
               </div>
               <div className="h-14 border border-line-200"></div>
               <div className="flex gap-6">
-                <p className="text-black-300">334건</p>
+                <p className="text-black-300">{data.confirmedCount}건</p>
                 <p className="text-grayscale-300">확정</p>
               </div>
             </div>
           </div>
         </div>
         <div className="flex gap-4">
-          <div className="relative h-24 w-24">
-            <Image src={"/images/like.png"} alt="like" fill />
+          <div
+            className="relative h-24 w-24 cursor-pointer"
+            onClick={(e) => {
+              e.stopPropagation();
+              handleClick();
+            }}
+          >
+            <Image src={liked ? "/images/like.png" : "/images/empty-heart.png"} alt="like" fill />
           </div>
-          <p className="text-2lg-18px-medium text-primary-blue-400">136</p>
+          <p className="text-2lg-18px-medium text-primary-blue-400">{data.likes}</p>
         </div>
       </div>
+      {data.price && (
+        <div className="flex items-center justify-end gap-16">
+          <p className="text-2lg-18px-medium text-black-400">견적 금액</p>
+          <p className="text-2xl-24px-bold text-black-400">{formatPrice(data.price)}</p>
+        </div>
+      )}
     </div>
   );
 }

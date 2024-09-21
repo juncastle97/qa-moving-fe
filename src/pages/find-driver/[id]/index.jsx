@@ -4,34 +4,48 @@ import CustomButton from "@/components/common/Button";
 import Image from "next/image";
 import DetailChip from "@/components/common/DetailChip";
 import StarRatingAverage from "@/components/StarRatingAverage";
-import mockData from "../../mock/driver-detail/mockData";
 import ReviewDetail from "@/components/Card/ReviewDetail";
+import { useRouter } from "next/router";
+import driverData from "@/mock/find-driver/driverData";
 
 export default function DriverDetail() {
-  const moveType = ["소형이사", "가정이사"];
-  const location = ["서울", "경기"];
-
-  const scoresCount = [
-    mockData.scoreFiveCount,
-    mockData.scoreFourCount,
-    mockData.scoreThreeCount,
-    mockData.scoreTwoCount,
-    mockData.scoreOneCount,
-  ];
-
-  const totalReviews = scoresCount.reduce((total, score) => total + score, 0);
-
+  const router = useRouter();
+  const { id } = router.query;
   const [currentPage, setCurrentPage] = useState(1);
   const [leftArrowImage, setLeftArrowImage] = useState("/images/leftArrowGray.png");
   const [rightArrowImage, setRightArrowImage] = useState("/images/rightArrowGray.png");
 
+  const data = driverData.find((item) => item.id === Number(id));
+
+  if (!data) {
+    return <p>해당 드라이버에 대한 데이터를 찾을 수 없습니다.</p>;
+  }
+
+  const moveType = ["소형이사", "가정이사"];
+  const location = ["서울", "경기"];
+
+  const scoresCount = data
+    ? [
+        data.scoreFiveCount,
+        data.scoreFourCount,
+        data.scoreThreeCount,
+        data.scoreTwoCount,
+        data.scoreOneCount,
+      ]
+    : [];
+
+  const totalReviews =
+    scoresCount.length > 0 ? scoresCount.reduce((total, score) => total + score, 0) : 0;
+
   const reviewsPerPage = 5;
-  const totalPages = Math.ceil((mockData.reviewData?.length || 0) / reviewsPerPage);
+  const totalPages =
+    data && data.reviewData ? Math.ceil(data.reviewData.length / reviewsPerPage) : 0;
 
   const indexOfLastReview = currentPage * reviewsPerPage;
   const indexOfFirstReview = indexOfLastReview - reviewsPerPage;
-  const currentReviews = mockData.reviewData
-    ? mockData.reviewData.slice(indexOfFirstReview, indexOfLastReview)
+
+  const currentReviews = data.reviewData
+    ? data.reviewData.slice(indexOfFirstReview, indexOfLastReview)
     : [];
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -72,14 +86,17 @@ export default function DriverDetail() {
           <button
             key={1}
             onClick={() => paginate(1)}
-            className="p-10 text-2lg-18px-semibold text-grayscale-200 h-48 w-48"
+            className="h-48 w-48 p-10 text-2lg-18px-semibold text-grayscale-200"
           >
             1
           </button>,
         );
         if (leftBoundary > 2) {
           buttons.push(
-            <span key="leftEllipsis" className="p-10 text-2lg-18px-semibold text-grayscale-200 h-48 w-48">
+            <span
+              key="leftEllipsis"
+              className="h-48 w-48 p-10 text-2lg-18px-semibold text-grayscale-200"
+            >
               <span>...</span>
             </span>,
           );
@@ -91,7 +108,7 @@ export default function DriverDetail() {
           <button
             key={i}
             onClick={() => paginate(i)}
-            className={`p-10 text-2lg-18px-semibold h-48 w-48 ${
+            className={`h-48 w-48 p-10 text-2lg-18px-semibold ${
               currentPage === i ? "text-black-400" : "text-grayscale-200"
             }`}
           >
@@ -103,7 +120,10 @@ export default function DriverDetail() {
       if (rightBoundary < totalPages) {
         if (rightBoundary < totalPages - 1) {
           buttons.push(
-            <span key="rightEllipsis" className="p-10 text-2lg-18px-semibold text-grayscale-200 h-48 w-48">
+            <span
+              key="rightEllipsis"
+              className="h-48 w-48 p-10 text-2lg-18px-semibold text-grayscale-200"
+            >
               ...
             </span>,
           );
@@ -112,7 +132,7 @@ export default function DriverDetail() {
           <button
             key={totalPages}
             onClick={() => paginate(totalPages)}
-            className="p-10 text-2lg-18px-semibold text-grayscale-200 h-48 w-48"
+            className="h-48 w-48 p-10 text-2lg-18px-semibold text-grayscale-200"
           >
             {totalPages}
           </button>,
@@ -141,13 +161,13 @@ export default function DriverDetail() {
   return (
     <div className="mb-65 mt-56 flex gap-117 pl-260">
       <div className="flex w-955 flex-col gap-40">
-        <DriverList quoteStatuses={["Office Moving"]} />
+        <DriverList quoteStatuses={data.quoteStatuses} data={data} />
 
         <div className="border-t border-line-100"></div>
 
         <div className="flex flex-col gap-32">
           <p className="text-2xl-24px-bold text-black-400">상세설명</p>
-          <div className="text-2lg-18px-regular text-black-400">{mockData.descriptionData}</div>
+          <div className="text-2lg-18px-regular text-black-400">{data.descriptionData}</div>
         </div>
 
         <div className="border-t border-line-100"></div>
@@ -155,7 +175,7 @@ export default function DriverDetail() {
         <div className="flex flex-col gap-32">
           <p className="text-2xl-24px-bold text-black-400">제공 서비스</p>
           <div className="flex gap-12">
-            {moveType.map((type, index) => (
+            {data.moveType.map((type, index) => (
               <DetailChip key={index} text={type} isSelected={true} />
             ))}
           </div>
@@ -166,7 +186,7 @@ export default function DriverDetail() {
         <div className="flex flex-col gap-32">
           <p className="text-2xl-24px-bold text-black-400">서비스 가능 지역</p>
           <div className="flex gap-12">
-            {location.map((type, index) => (
+            {data.location.map((type, index) => (
               <DetailChip key={index} text={type} isSelected={false} />
             ))}
           </div>
@@ -174,11 +194,11 @@ export default function DriverDetail() {
 
         <div className="border-t border-line-100"></div>
 
-        {mockData.reviewData ? (
+        {data.reviewData ? (
           <>
             <div className="flex flex-col gap-32">
               <p className="text-2xl-24px-bold text-black-400">리뷰 ({totalReviews})</p>
-              <StarRatingAverage data={mockData} />
+              <StarRatingAverage data={data} />
             </div>
             <div className="h-900">
               {currentReviews.map((data, index) => (

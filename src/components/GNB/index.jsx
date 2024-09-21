@@ -44,7 +44,11 @@ export default function GNB() {
                   key={item.name}
                   href={item.path}
                   className={`cursor-pointer ${
-                    currentPath === item.path ? "text-black-400" : "hover:text-primary-blue-300"
+                    currentPath.includes(item.path) ||
+                    (item.path === "/my-quote/wait" && currentPath.includes("/my-quote")) ||
+                    (item.path === "/find-driver" && currentPath.includes("/find-driver"))
+                      ? "text-black-400"
+                      : "hover:text-primary-blue-300"
                   }`}
                 >
                   {item.name}

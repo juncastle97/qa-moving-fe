@@ -4,6 +4,8 @@ import Dropdown from "@/components/common/Dropdown";
 import { DROPDOWN_BTN } from "@/constants/location";
 import LikedDriverList from "@/components/Card/LikedDriverList";
 import DriverList from "@/components/Card/DriverList";
+import likedDriverData from "@/mock/find-driver/likedDriverData";
+import driverData from "@/mock/find-driver/driverData";
 
 export default function FindDriver() {
   const [location, setLocation] = useState("지역");
@@ -73,9 +75,9 @@ export default function FindDriver() {
           </div>
           <div className="mt-14 flex flex-col gap-16">
             <p className="text-xl-20px-semibold text-black-400">찜한 기사님</p>
-            <LikedDriverList quoteStatuses={["Office Moving", "Requested Quote"]} />
-            <LikedDriverList quoteStatuses={["Office Moving", "Requested Quote"]} />
-            <LikedDriverList quoteStatuses={["Office Moving", "Requested Quote"]} />
+            {likedDriverData.map((data, index) => (
+              <LikedDriverList key={index} quoteStatuses={data.quoteStatuses} data={data} />
+            ))}
           </div>
         </div>
         <div className="flex flex-col gap-30">
@@ -95,11 +97,9 @@ export default function FindDriver() {
             />
           </div>
           <div className="flex flex-col gap-48">
-            <DriverList quoteStatuses={["Office Moving", "Requested Quote"]} />
-            <DriverList quoteStatuses={["Office Moving", "Requested Quote"]} />
-            <DriverList quoteStatuses={["Office Moving", "Requested Quote"]} />
-            <DriverList quoteStatuses={["Office Moving", "Requested Quote"]} />
-            <DriverList quoteStatuses={["Office Moving", "Requested Quote"]} />
+            {driverData.map((data, index) => (
+              <DriverList key={index} quoteStatuses={data.quoteStatuses} data={data} />
+            ))}
           </div>
         </div>
       </div>

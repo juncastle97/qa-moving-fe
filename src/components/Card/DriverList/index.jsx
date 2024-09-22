@@ -1,6 +1,6 @@
 import QuoteChip from "@/components/common/QuoteChip";
 import Image from "next/image";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 
 export default function DriverList({ quoteStatuses, data, small, noneCursor, heart }) {

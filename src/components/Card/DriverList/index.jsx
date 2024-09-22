@@ -1,10 +1,10 @@
 import QuoteChip from "@/components/common/QuoteChip";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
-export default function DriverList({ quoteStatuses, data, small }) {
-  const [liked, setLiked] = useState(false);
+export default function DriverList({ quoteStatuses, data, small, noneCursor, heart }) {
+  const [liked, setLiked] = useState(heart || false); // heart prop에 따라 초기 상태 설정
 
   const router = useRouter();
 
@@ -17,17 +17,19 @@ export default function DriverList({ quoteStatuses, data, small }) {
   };
 
   const navigateToDriverDetail = () => {
-    const currentPath = router.asPath;
-    // Remove any existing query parameters
-    const basePath = currentPath.split("?")[0];
-    // Ensure we don't add multiple slashes
-    const newPath = `${basePath.replace(/\/$/, "")}/${data.id}`;
-    router.push(newPath);
+    if (!noneCursor) { // noneCursor가 true가 아닐 때만 작동
+      const currentPath = router.asPath;
+      const basePath = currentPath.split("?")[0];
+      const newPath = `${basePath.replace(/\/$/, "")}/${data.id}`;
+      router.push(newPath);
+    }
   };
 
   return (
     <div
-      className="flex w-full cursor-pointer flex-col gap-9 rounded-16 px-24 py-20 shadow-custom"
+      className={`flex w-full flex-col gap-9 rounded-16 px-24 py-20 shadow-custom bg-white ${
+        noneCursor ? "" : "cursor-pointer"
+      }`}
       onClick={navigateToDriverDetail}
     >
       <QuoteChip quoteStatuses={quoteStatuses} />
@@ -43,7 +45,7 @@ export default function DriverList({ quoteStatuses, data, small }) {
           <div className="relative h-65 w-65 overflow-hidden rounded-full border-3 border-black">
             <Image src={data.profileImage} alt="기사님 프로필" fill />
           </div>
-          <div className="flex w-708 flex-col gap-8">
+          <div className="flex flex-col gap-8">
             <div className="flex gap-8 text-2lg-18px-semibold text-black-300">
               <p>{data.name}</p>
               <p>기사님</p>

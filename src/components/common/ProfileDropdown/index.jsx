@@ -23,9 +23,9 @@ const ProfileDropdown = () => {
   }, []);
 
   const menuItems = [
-    { name: "프로필 수정", path: "/profile-edit" },
-    { name: "찜한 기사님", path: "/favorite-drivers" },
-    { name: "이사 리뷰", path: "/move-reviews" },
+    { name: "프로필 수정", path: "/edit-profile-user" },
+    { name: "찜한 기사님", path: "/liked-driver" },
+    { name: "이사 리뷰", path: "/review/add-review" },
   ];
 
   return (
@@ -46,7 +46,10 @@ const ProfileDropdown = () => {
       </div>
 
       {isOpen && (
-        <div className="absolute right-0 mt-8 h-294 w-248 rounded-16 bg-white pb-6 pt-16 shadow-lg ring-1 ring-black ring-opacity-5">
+        <div
+          className="absolute right-0 mt-8 h-294 w-248 rounded-16 bg-white pb-6 pt-16 shadow-lg ring-1 ring-black ring-opacity-5"
+          style={{ zIndex: 999 }} // z-index 추가
+        >
           <div className="h-54 w-240 py-14 pl-24 pr-12">김가나 고객님</div>
           <div>
             {menuItems.map((item) => (
@@ -60,7 +63,7 @@ const ProfileDropdown = () => {
               </Link>
             ))}
             <button
-              className="border-t border-line-100 pt-14 flex justify-center w-full px-4 py-2 text-left text-md-14px-medium text-sm text-grayscale-500"
+              className="flex w-full justify-center border-t border-line-100 px-4 py-2 pt-14 text-left text-md-14px-medium text-sm text-grayscale-500"
               onClick={() => {
                 // 로그아웃 로직
                 setIsOpen(false);

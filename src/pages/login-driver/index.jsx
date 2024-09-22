@@ -23,7 +23,14 @@ export default function LoginDriver() {
     formState: { isValid },
   } = useForm({ mode: "onChange" });
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async (data) => {
+    try {
+      console.log("Form submitted with data:", data);
+      router.push("/my-request");
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
+  };
 
   return (
     <>

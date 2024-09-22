@@ -1,27 +1,21 @@
-import DriverList from "@/components/Card/DriverList";
 import React from "react";
 import { useRouter } from "next/router";
-import doneQuoteData from "@/mock/my-quote/doneMockData";
 import Image from "next/image";
+import driverQuoteData from "@/mock/my-quote-driver/mockData";
+import CustomerInfo from "@/components/Card/CustomerInfo";
 
 export default function QuoteDetail() {
   const router = useRouter();
   const { id } = router.query;
 
-  const data = doneQuoteData.driverList.find((item) => item.id === Number(id));
+  const data = driverQuoteData.find((item) => item.id === Number(id));
+
+  console.log(data);
 
   if (!data) {
     return <div>존재하지 않는 데이터입니다.</div>;
   }
 
-  function formatDate(movingDate) {
-    const parts = movingDate.split(". ");
-    const year = parts[0].slice(2);
-    const month = parts[1];
-    const day = parts[2].split("(")[0];
-
-    return `${year}.${month}.${day}`;
-  }
 
   const formatPrice = (price) => {
     if (!price && price !== 0) return "가격 정보 없음";
@@ -35,9 +29,7 @@ export default function QuoteDetail() {
       </div>
       <div className="flex gap-117 px-260">
         <div className="flex w-955 flex-col gap-40">
-          <DriverList quoteStatuses={data.quoteStatuses} data={data} />
-
-          <div className="border border-line-100"></div>
+          <CustomerInfo quoteStatuses={data.quoteStatuses} data={data} />
 
           <p className="text-2xl-24px-semibold text-black-400">견적가</p>
 
@@ -50,25 +42,25 @@ export default function QuoteDetail() {
             <div className="flex h-285 flex-col justify-center gap-16 rounded-16 border border-line-100 bg-bg-200 px-40 py-32">
               <div className="flex gap-32 text-2lg-18px-regular">
                 <p className="w-90 text-grayscale-300">견적 요청일</p>
-                <p>{formatDate(doneQuoteData.movingDate)}</p>
+                <p>{data.requestDate}</p>
               </div>
               <div className="flex gap-32 text-2lg-18px-regular">
                 <p className="w-90 text-grayscale-300">서비스</p>
-                <p>{doneQuoteData.quoteType}</p>
+                <p>{data.quoteType}</p>
               </div>
               <div className="flex gap-32 text-2lg-18px-regular">
                 <p className="w-90 text-grayscale-300">이용일</p>
                 <p>
-                  {doneQuoteData.movingDate} {doneQuoteData.movingTime}
+                  {data.movingDate} {data.movingTime}
                 </p>
               </div>
               <div className="flex gap-32 text-2lg-18px-regular">
                 <p className="w-90 text-grayscale-300">출발지</p>
-                <p>{doneQuoteData.startLocationDetail}</p>
+                <p>{data.startLocationDetail}</p>
               </div>
               <div className="flex gap-32 text-2lg-18px-regular">
                 <p className="w-90 text-grayscale-300">도착지</p>
-                <p>{doneQuoteData.endLocationDetail}</p>
+                <p>{data.endLocationDetail}</p>
               </div>
             </div>
           </div>

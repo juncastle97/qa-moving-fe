@@ -1,17 +1,19 @@
 import React from "react";
-import Link from "next/link";
 import { useRouter } from "next/router";
-import WaitingQuote from "@/components/Card/WaitingQuote";
-import mockDriverDataList from "@/mock/my-quote/waitMockData";
+import Link from "next/link";
+import driverQuoteData from "@/mock/my-quote-driver/mockData";
+import DriverQuoteCard from "@/components/Card/DriverQuote";
 
-export default function Wait() {
+export default function Receive() {
   const router = useRouter();
   const currentPath = router.pathname;
 
   const tabs = [
-    { name: "대기 중인 견적", path: "/my-quote/wait" },
-    { name: "받았던 견적", path: "/my-quote/done" },
+    { name: "받은 견적 조회", path: "/my-quote-driver/receive" },
+    { name: "반려 견적", path: "/my-quote-driver/reject" },
   ];
+
+  const filteredQuoteData = driverQuoteData.filter((data) => !data.reject);
 
   return (
     <>
@@ -35,11 +37,13 @@ export default function Wait() {
           ))}
         </nav>
       </div>
-      <div className="min-h-screen overflow-x-auto bg-bg-200 px-260 pt-40 w-full">
-        <div className="grid w-1400 grid-cols-2 gap-24">
-          {mockDriverDataList.map((data, index) => (
-            <WaitingQuote key={index} quoteStatuses={data.quoteStatuses} data={data} />
-          ))}
+      <div className="min-h-screen w-full overflow-x-auto bg-bg-200 px-260 pt-40">
+        <div className="flex flex-col justify-center">
+          <div className="grid min-h-[1130px] w-1360 grid-cols-2 gap-x-24 gap-y-48">
+            {filteredQuoteData.map((data, index) => (
+              <DriverQuoteCard key={index} quoteStatuses={data.quoteStatuses} data={data} />
+            ))}
+          </div>
         </div>
       </div>
     </>

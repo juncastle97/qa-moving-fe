@@ -152,7 +152,7 @@ export default function MyReview() {
             <Link
               key={tab.name}
               href={tab.path}
-              className={`relative inline-flex items-center border-b-2 py-14 text-xl-20px-semibold ${
+              className={`relative inline-flex items-center border-b-1 py-14 text-xl-20px-semibold ${
                 currentPath === tab.path
                   ? "border-black text-black-400"
                   : "border-transparent text-grayscale-400"

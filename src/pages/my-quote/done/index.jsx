@@ -38,7 +38,7 @@ export default function Done() {
             <Link
               key={tab.name}
               href={tab.path}
-              className={`relative inline-flex items-center border-b-2 py-14 text-xl-20px-semibold ${
+              className={`relative inline-flex items-center border-b-1 py-14 text-xl-20px-semibold ${
                 currentPath === tab.path
                   ? "border-black text-black-400"
                   : "border-transparent text-grayscale-400"
@@ -52,7 +52,7 @@ export default function Done() {
           ))}
         </nav>
       </div>
-      <div className="min-h-screen bg-bg-200 px-260 py-64">
+      <div className="min-h-screen overflow-x-auto bg-bg-200 px-260 py-64">
         <div className="flex w-1400 flex-col justify-center gap-48 rounded-40 bg-white px-40 py-48 shadow-custom">
           <div className="flex flex-col gap-40">
             <p className="text-2xl-24px-semibold text-black-400">견적 정보</p>

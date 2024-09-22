@@ -21,9 +21,6 @@ export default function DriverDetail() {
     return <p>해당 드라이버에 대한 데이터를 찾을 수 없습니다.</p>;
   }
 
-  const moveType = ["소형이사", "가정이사"];
-  const location = ["서울", "경기"];
-
   const scoresCount = data
     ? [
         data.scoreFiveCount,

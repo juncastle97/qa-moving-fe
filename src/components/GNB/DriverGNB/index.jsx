@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import ProfileDropdown from "../common/ProfileDropdown";
+import DriverProfileDropdown from "@/components/common/DriverProfileDropdown";
 
 export default function DriverGNB() {
   const router = useRouter();
@@ -22,8 +22,8 @@ export default function DriverGNB() {
   };
 
   const navItems = [
-    { name: "받은 요청", path: "/quote-request" },
-    { name: "내 견적 관리", path: "/my-quote/wait" },
+    { name: "받은 요청", path: "/my-request" },
+    { name: "내 견적 관리", path: "/my-quote-driver/receive" },
   ];
 
   return (
@@ -36,6 +36,8 @@ export default function DriverGNB() {
           >
             <Image src="/icons/ic-logo-icon-text.svg" alt="logo-icon-text" fill />
           </div>
+
+          {/* hiddenPaths에 현재 경로가 포함되지 않으면 네비게이션을 보여줌 */}
           {!hiddenPaths.includes(currentPath) && (
             <div className="flex gap-40 text-2lg-18px-bold text-grayscale-400">
               {navItems.map((item) => (
@@ -43,9 +45,7 @@ export default function DriverGNB() {
                   key={item.name}
                   href={item.path}
                   className={`cursor-pointer ${
-                    currentPath.includes(item.path) ||
-                    (item.path === "/my-quote/wait" && currentPath.includes("/my-quote")) ||
-                    (item.path === "/find-driver" && currentPath.includes("/find-driver"))
+                    currentPath.startsWith(item.path) // startsWith로 경로 일치 여부 확인
                       ? "text-black-400"
                       : "hover:text-primary-blue-300"
                   }`}
@@ -56,12 +56,14 @@ export default function DriverGNB() {
             </div>
           )}
         </div>
+
+        {/* 알람 및 다른 요소들 - hiddenPaths에 현재 경로가 포함되지 않으면 표시 */}
         {!hiddenPaths.includes(currentPath) && (
           <div className="flex items-center gap-24 lg:gap-32">
             <div className="relative h-24 w-24 lg:h-36 lg:w-36">
               <Image src="/icons/alarm.svg" alt="ic-alarm" fill />
             </div>
-            <ProfileDropdown />
+            <DriverProfileDropdown />
           </div>
         )}
       </div>

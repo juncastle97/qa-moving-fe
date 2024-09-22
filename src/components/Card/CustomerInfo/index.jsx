@@ -1,14 +1,16 @@
 import React from "react";
 import QuoteChip from "@/components/common/QuoteChip";
 
-export default function CustomerInfo({ quoteStatuses, data }) {
+export default function CustomerInfo({ quoteStatuses, data, line }) {
   const formatPrice = (price) => {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " 원";
   };
 
   return (
     <div
-      className={`relative flex w-955 flex-col gap-16 rounded-16 bg-white px-24 pb-12 pt-20 shadow-custom`}
+      className={`relative flex flex-col gap-16 rounded-16 bg-white px-24 pb-12 pt-20 ${
+        line ? "border border-line-200 w-1400" : "shadow-custom w-955"
+      }`}
     >
       <QuoteChip quoteStatuses={quoteStatuses} />
 
@@ -17,7 +19,7 @@ export default function CustomerInfo({ quoteStatuses, data }) {
 
         <div className="border-t border-line-200"></div>
 
-        <div className="flex items-center gap-16 mb-16">
+        <div className="mb-16 flex items-center gap-16">
           <div className="flex items-center gap-6">
             <p className="rounded-4 bg-bg-400 px-6 py-4 text-2lg-18px-regular text-grayscale-500">
               이사일

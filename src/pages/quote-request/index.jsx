@@ -3,6 +3,7 @@ import CustomButton from "@/components/common/Button";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { useRouter } from "next/router";
+import LocationModal from "@/components/Modal/Location";
 
 const MovingQuoteRequest = () => {
   const [step, setStep] = useState(1);
@@ -10,6 +11,22 @@ const MovingQuoteRequest = () => {
   const [movingDate, setMovingDate] = useState("");
   const [departure, setDeparture] = useState("");
   const [destination, setDestination] = useState("");
+
+  const [showDepartureModal, setShowDepartureModal] = useState(false);
+  const [showDestinationModal, setShowDestinationModal] = useState(false);
+
+  const handleCloseDepartureModal = () => setShowDepartureModal(false);
+  const handleCloseDestinationModal = () => setShowDestinationModal(false);
+
+  const handleDepartureSubmit = (location) => {
+    setDeparture(location);
+    console.log("출발지:", location);
+  };
+
+  const handleDestinationSubmit = (location) => {
+    setDestination(location);
+    console.log("도착지:", location);
+  };
 
   const router = useRouter();
 
@@ -21,7 +38,7 @@ const MovingQuoteRequest = () => {
     try {
       console.log("견적 요청:", { movingType, movingDate, departure, destination });
       // 여기에 견적 요청 로직 추가
-      router.push("/qutoe-request-wait");
+      router.push("/find-driver");
     } catch (error) {
       console.error("오류", error.message);
     }
@@ -44,8 +61,12 @@ const MovingQuoteRequest = () => {
 
   const formatDate = (dateString) => {
     if (!dateString) return "";
-    const [year, month, day] = dateString.split("-");
-    return `${year}년 ${month}월 ${day}일`;
+    const date = new Date(dateString);
+    return date.toLocaleDateString("ko-KR", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
   };
 
   return (
@@ -148,10 +169,7 @@ const MovingQuoteRequest = () => {
               이사 예정일을 선택해주세요.
             </div>
             <div className="flex w-640 flex-col items-center justify-center gap-24 rounded-32 bg-white py-24">
-              <Calendar
-                onChange={(date) => setMovingDate(date.toISOString().split("T")[0])}
-                value={movingDate}
-              />
+              <Calendar onChange={(date) => setMovingDate(date.toISOString())} value={movingDate} />
               <CustomButton
                 text="선택완료"
                 type="submit"
@@ -178,17 +196,36 @@ const MovingQuoteRequest = () => {
             <div className="flex h-297 w-624 flex-col justify-center gap-21 rounded-32 bg-white p-32">
               <div>
                 <label className="mb-16 block text-2lg-18px-semibold">출발지</label>
-                <button className="flex h-64 w-560 items-center rounded-16 border border-primary-blue-300 px-24 py-16 text-xl-20px-semibold text-primary-blue-300">
+                <button
+                  onClick={() => setShowDepartureModal(true)}
+                  className="flex h-64 w-560 items-center rounded-16 border border-primary-blue-300 px-24 py-16 text-xl-20px-semibold text-primary-blue-300"
+                >
                   출발지 선택하기
                 </button>
               </div>
               <div>
                 <label className="mb-16 block text-2lg-18px-semibold">도착지</label>
-                <button className="flex h-64 w-560 items-center rounded-16 border border-primary-blue-300 px-24 py-16 text-xl-20px-semibold text-primary-blue-300">
+                <button
+                  onClick={() => setShowDestinationModal(true)}
+                  className="flex h-64 w-560 items-center rounded-16 border border-primary-blue-300 px-24 py-16 text-xl-20px-semibold text-primary-blue-300"
+                >
                   도착지 선택하기
                 </button>
               </div>
             </div>
+            {showDepartureModal && (
+              <LocationModal
+                onClose={handleCloseDepartureModal}
+                onSubmit={handleDepartureSubmit}
+                departure
+              />
+            )}
+            {showDestinationModal && (
+              <LocationModal
+                onClose={handleCloseDestinationModal}
+                onSubmit={handleDestinationSubmit}
+              />
+            )}
 
             {departure && destination && (
               <div className="custom-rounded-answer flex w-624 flex-col justify-center gap-21 self-end bg-white p-32">

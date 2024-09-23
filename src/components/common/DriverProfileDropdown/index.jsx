@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import DriverProfileData from "@/mock/mypage-driver/mockData";
 
 const DriverProfileDropdown = () => {
   const router = useRouter();
@@ -30,13 +31,13 @@ const DriverProfileDropdown = () => {
     <div className="relative" ref={dropdownRef}>
       <div className="flex items-center gap-15 focus:outline-none">
         <div className="relative h-24 w-24 overflow-hidden rounded-full lg:h-36 lg:w-36">
-          <Image src="/icons/Profile.svg" alt="default-profile-img" fill />
+          <Image src={DriverProfileData.profileImage} alt="default-profile-img" fill />
         </div>
         <button
           onClick={toggleDropdown}
           className="text-2lg-18px-medium text-black-400 md:hidden lg:block"
         >
-          김코드
+          {DriverProfileData.name}
         </button>
         <button onClick={toggleDropdown} className="relative h-24 w-24 lg:hidden lg:h-36 lg:w-36">
           <Image src={"/images/menu.png"} alt="menu" fill />
@@ -48,7 +49,7 @@ const DriverProfileDropdown = () => {
           className="absolute right-0 mt-8 w-248 rounded-16 bg-white pb-6 pt-16 shadow-lg ring-1 ring-black ring-opacity-5"
           style={{ zIndex: 999 }} // z-index 추가
         >
-          <div className="h-54 w-240 py-14 pl-24 pr-12">김코드 기사님</div>
+          <div className="h-54 w-240 py-14 pl-24 pr-12">{DriverProfileData.name} 기사님</div>
           <div>
             {menuItems.map((item) => (
               <Link
